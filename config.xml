@@ -17,9 +17,11 @@
         Nadeesha Thilakarathne
     </author>
 	
-	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" />
-	<plugin name="cordova-plugin-android-permissions" source="npm" spec="1.0.0" />
 
+	<plugin name="cordova-plugin-android-permissions" source="npm" spec="1.0.0" />
+	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" />
+	
+	
     <icon src="icons/baby.jpg" />
 	  <allow-intent href="http://*/*" />
 	  <allow-intent href="http://responsivefoodfeedingsrilanka.blogspot.com/" />
