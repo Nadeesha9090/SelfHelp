@@ -17,16 +17,10 @@
         Nadeesha Thilakarathne
     </author>
 	
-	<platform name="android">
-		<config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.INTERNET"/>
-			<uses-permission android:name="android.permission.RECEIVE_SMS" />
-		</config-file>
-	</platform>
 	
-
-	<plugin name="cordova-plugin-android-permissions" source="npm" spec="1.0.0" />
-	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" /> 
+	<gap:plugin name="cordova-plugin-sms" source="npm" />
+	<!--plugin name="cordova-plugin-android-permissions" source="npm" spec="1.0.0" />
+	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" /--> 
 	
 	
     <icon src="icons/baby.jpg" />
