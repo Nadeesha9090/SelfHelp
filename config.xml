@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/2.0"
-        id        = "com.drat.demo"
+        id        = "com.nadeesha9090.demo"
         versionCode="11" 
         version   = "2.0.0">
 
 
 
-    <name>Diabetes SelfHelp</name>
+    <name>SelfHelp</name>
 
     <description>
-         Diabetes SelfHelp
+       Diabates Prevention
     </description>
 
-    <author href="" email="ireshabke@gmail.com">
-        Nadeesha Thilakarathne & Iresha Bandaranayake
+    <author href="http://thaalakaz.blogspot.com/" email="nadeesha9090@gmail.com">
+        Nadeesha Thilakarathne
     </author>
-
-
-<content src="index.html"/>
-	<access origin="*" />
-
-
-
-
-
-
-	<engine name="android" spec="~6.3.0" />
-    <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~2.0.2" />
+	
 	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" />
-    
 
     <icon src="icons/baby.jpg" />
-	 
+	  <allow-intent href="http://*/*" />
+	  <allow-intent href="http://responsivefoodfeedingsrilanka.blogspot.com/" />
+	  <allow-intent href="tel:*" />
+	  <allow-intent href="sms:*" />
+	  <allow-intent href="mailto:*" />
+	  <allow-intent href="geo:*" />
 
 </widget>
