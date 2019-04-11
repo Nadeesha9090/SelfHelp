@@ -17,6 +17,7 @@
         Nadeesha Thilakarathne
     </author>
 	
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
 
 	<plugin name="cordova-plugin-android-permissions" source="npm" spec="1.0.0" />
 	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" /> 
