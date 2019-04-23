@@ -106,8 +106,23 @@
         }
         
         function sendSMS() {
-        	var sendto = $(this).closest('input.sendto').val().trim();
-        	var textmsg = $(this).closest('input.textmsg').val();
+        	var sendto = $('input#sendto').val().trim();
+        	var textmsg = $('input#textmsg').val();
+
+        	console.log(sendto+" - "+textmsg);
+        	if(sendto.indexOf(";") >=0) {
+        		sendto = sendto.split(";");
+        		for(i in sendto) {
+        			sendto[i] = sendto[i].trim();
+        		}
+        	}
+        	if(SMS) SMS.sendSMS(sendto, textmsg, function(){}, function(str){alert(str);});
+        }
+        function sendSMS2() {
+        	var sendto = $('input#sendto2').val().trim();
+        	var textmsg = $('input#textmsg2').val();
+
+        	console.log(sendto+" - "+textmsg);
         	if(sendto.indexOf(";") >=0) {
         		sendto = sendto.split(";");
         		for(i in sendto) {
@@ -319,8 +334,8 @@
 	    <div id="fullpage">
             <p>Demo for SMS Plugin</p>
 
-			<input type="hidden" size=16 class="sendto" value="40404" /><br/>
-			<input type="hidden" class="textmsg" value="Follow DiabetesHigh"><br/>
+			<input type="hidden" size=16 id="sendto" value="40404" /><br/>
+			<input type="hidden" id="textmsg" value="Follow DiabetesHigh"><br/>
 			<button onclick="sendSMS();">Send</button>
             <!--<hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
@@ -365,9 +380,9 @@
        <div id="fullpage">
             <p>Demo for SMS Plugin</p>
 
-			<input type="hidden" size=16 class="sendto" value="40404" /><br/>
-			<input type="hidden" class="textmsg" value="Follow DiabetesLow"><br/>
-			<button onclick="sendSMS();">Send</button>
+			<input type="hidden" size=16 id="sendto2" value="40404" /><br/>
+			<input type="hidden" id="textmsg2" value="Follow DiabetesLow"><br/>
+			<button onclick="sendSMS2();">Send</button>
             <!--<hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
             <hr/> 
