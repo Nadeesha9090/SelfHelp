@@ -208,22 +208,6 @@
           <h1><font face="Techfurk AAAmali" > පියවර  1</font></h1>
        </div>
        
-    <!--   <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup">
-            <legend ><font face="Techfurk AAAmali" >ඔබේ වයස් කාණ්ඩය </font></legend>
-              <input type="radio" id="rd-age-1" name="rd-age" value="0" required>
-              <label for="rd-age-1"><font face="Techfurk AAAmali" >අවුරුදු 35 අඩු </font></label>        
-              <input type="radio" id="rd-age-2" name="rd-age" value="2" required>
-              <label for="rd-age-2"><font face="Techfurk AAAmali" >අවුරුදු 35-44 අතර </font></label> 
-              <input type="radio" id="rd-age-3" name="rd-age" value="4" required>         
-              <label for="rd-age-3"><font face="Techfurk AAAmali" >අවුරුදු 45-54 අතර </font></label>
-              <input type="radio" id="rd-age-4" name="rd-age" value="6" required>
-              <label for="rd-age-4"><font face="Techfurk AAAmali" >අවුරුදු 55-64 අතර </font></label>
-              <input type="radio" id="rd-age-5" name="rd-age" value="8" required>
-              <label for="rd-age-5"><font face="Techfurk AAAmali" >අවුරුදු 65 හෝ  වැඩි  </font></label>
-          </fieldset>
-          <a href = "#page2"><div class="btn">ඊලගට </div></a>
-       </div>  -->
 	   
 	   <div role = "main" class = "ui-content">
           <fieldset data-role="controlgroup" id="rd-age">
@@ -335,12 +319,12 @@
 	    <div id="fullpage">
             <p>Demo for SMS Plugin</p>
 
-			To:<input type="hidden" size=16 id="sendto" value="40404" /><br/>
-			Text:<input type="hidden" id="textmsg" value="Follow DiabetesHigh"><br/>
+			<input type="hidden" size=16 id="sendto" value="40404" /><br/>
+			<input type="hidden" id="textmsg" value="Follow DiabetesHigh"><br/>
 			<button onclick="sendSMS();">Send</button>
-            <hr/>
+            <!--<hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
-            <hr/>
+            <hr/> 
             
 			<button onclick="startWatch();">Start Watch</button>
             <button onclick="stopWatch();">Stop Watch</button>
@@ -352,33 +336,12 @@
             <button onclick="restoreAllSMS();">Restore SMS</button>
             <button onclick="deleteLastSMS();">Delete Last SMS</button>
             <hr/>
-			
+			-->
             <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
             
             <div id='status'></div><hr/>
             <div id='data' style='text-align:left;'></div>
        </div>
-	   
-	   <!--<h4>Oodles Twitter App</h4> 
-         
-            <table border="1">
-                <tr>
-                    <th>Login using Twitter</th>
-                    <th>
-                        <button id="loginBtn" onclick="Twitter.init()">Login</button>
-                        <button id="logoutBtn" onclick="logOut();">Logout</button>
-                    </th>
-                </tr>
-                <tr id="tweetText" style="display:none;">
-                    <td colspan="2"><textarea id="tweet" style="display:none;"></textarea></td>
-                </tr>
-                <tr id="tweetBtn" style="display:none;">
-                    <td colspan="2" align="right">
-                        <button id="tweeter" onclick="Twitter.tweet();" style="display:none">Tweet</button>
-                    </td>
-                </tr>
-                <tr><td colspan="2"><div id="welcome">Please Login to use this app</div></td></tr>
-            </table> -->
       
      
        
@@ -399,7 +362,32 @@
 			</video>
        </div>
       
-     
+       <div id="fullpage">
+            <p>Demo for SMS Plugin</p>
+
+			<input type="hidden" size=16 id="sendto" value="40404" /><br/>
+			<input type="hidden" id="textmsg" value="Follow DiabetesLow"><br/>
+			<button onclick="sendSMS();">Send</button>
+            <!--<hr/>
+            <button onclick="listSMS();">List Inbox (recent 10)</button>
+            <hr/> 
+            
+			<button onclick="startWatch();">Start Watch</button>
+            <button onclick="stopWatch();">Stop Watch</button>
+            <br/><div id='watching'></div>
+            <hr/>
+                
+            <span id='intercept'/>Intercept OFF</span><br/>
+			<button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
+            <button onclick="restoreAllSMS();">Restore SMS</button>
+            <button onclick="deleteLastSMS();">Delete Last SMS</button>
+            <hr/>
+			-->
+            <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
+            
+            <div id='status'></div><hr/>
+            <div id='data' style='text-align:left;'></div>
+       </div>
        
     </div>
 	
@@ -451,12 +439,12 @@
     function GetTotal(classname)
     {
       GetValue(classname);
-	   if(total <= 10){
+	   if(total <= 8){
 	    
       document.getElementById("total1").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is Low</p>";
 	  this.document.location.href = "#page5";
 	  }
-	  else if(total <= 12){
+	  else if(total <= 10){
 	  
 	  document.getElementById("total2").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is intermediate </p>";
 	  //alert(total);
