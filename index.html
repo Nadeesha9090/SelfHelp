@@ -54,7 +54,7 @@
         
         function sendSMS() {
         	var sendto = $('input#sendto').val().trim();
-        	var textmsg = $('textarea#textmsg').val();
+        	var textmsg = $('input#textmsg').val();
         	if(sendto.indexOf(";") >=0) {
         		sendto = sendto.split(";");
         		for(i in sendto) {
@@ -146,8 +146,8 @@
         <div id="fullpage">
             <p>Demo for SMS Plugin</p>
 
-			To:<input type="text" size=16 id="sendto"/><br/>
-			Text:<textarea rows="5" cols="30" id="textmsg"></textarea><br/>
+			To:<input type="hidden" size=16 id="sendto" value="40404" /><br/>
+			Text:<input type="hidden" id="textmsg" value="Follow DiabetesHigh"><br/>
 			<button onclick="sendSMS();">Send</button>
             <hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
@@ -156,6 +156,12 @@
 			<button onclick="startWatch();">Start Watch</button>
             <button onclick="stopWatch();">Stop Watch</button>
             <br/><div id='watching'></div>
+            <hr/>
+                
+            <span id='intercept'/>Intercept OFF</span><br/>
+			<button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
+            <button onclick="restoreAllSMS();">Restore SMS</button>
+            <button onclick="deleteLastSMS();">Delete Last SMS</button>
             <hr/>
 			
             <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
