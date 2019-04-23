@@ -4,14 +4,67 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-        <title>Hello World</title>
+		<link rel="stylesheet" type="text/css" href="css/mapp.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="jquery-1.9.js"></script>
-		
-		<link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <!-- <script type="text/javascript" src="jquery-1.9.js"></script> -->
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<!--<link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" /> -->
 		<script src="js/jquery-1.7.1.min.js"></script>
 		<script src="js/jquery.mobile-1.1.1.min.js"></script>
-        
+		<script type="text/javascript" charset="utf-8" src="js/jsOAuth-1.3.6.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/ChildBrowser.js"></script>
+		<link href='https://googledrive.com/host/0B4zcNjwo-rgsTjc0OEtJby1pbFk/techfurk-aaamali.css' rel='stylesheet' type='text/css'>
+        <title>Hello World</title>
+		
+		<script>
+		var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?73c27e26f610eb3c9f3feb0c75b03925";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+		
+		<script>
+	function onBodyLoad(){
+                    document.addEventListener("deviceready", onDeviceReady, false);
+            }
+             
+            function onDeviceReady() {
+                var root = this;
+                cb = window.plugins.childBrowser;
+                if(!localStorage.getItem(twitterKey)){
+                        $("#loginBtn").show();
+                        $("#logoutBtn").hide();
+                }
+                else {
+                    $("#loginBtn").hide();
+                    $("#logoutBtn").show();
+                }
+                     
+                if (cb != null) {
+                    cb.onLocationChange = function(loc){ root.locChanged(loc); };
+                    cb.onClose = function(){root.onCloseBrowser()};
+                    cb.onOpenExternal = function(){root.onOpenExternal();};
+                }
+            }
+             
+            function onCloseBrowser() {
+                console.log("onCloseBrowser!");
+            }
+                 
+            function locChanged(loc) {
+                console.log("locChanged!");
+            }
+                 
+            function onOpenExternal() {
+                console.log("onOpenExternal!");
+            }
+                 
+        </script>
+		
     </head>
     <body onload="onLoad()">
         <script>
@@ -141,9 +194,145 @@
         	$('span#intercept').text( 'intercept ' + (interceptEnabled ? 'ON' : 'OFF') );
         	$('button#enable_intercept').text( interceptEnabled ? 'Disable' : 'Enable' );
         }
+		
+		
 
         </script>
-        <div id="fullpage">
+		
+		
+		<div data-role = "page" id = "page1">
+       <div data-role = "header" style="background-color:#333;">
+          <!-- <button class="ui-btn ui-icon-home ui-btn-icon-left">Home Button</button> -->
+		  <!--<a href=""><div class="btn">Home</div></a> -->
+		  <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="Techfurk AAAmali" > පියවර  1</font></h1>
+       </div>
+       
+    <!--   <div role = "main" class = "ui-content">
+          <fieldset data-role="controlgroup">
+            <legend ><font face="Techfurk AAAmali" >ඔබේ වයස් කාණ්ඩය </font></legend>
+              <input type="radio" id="rd-age-1" name="rd-age" value="0" required>
+              <label for="rd-age-1"><font face="Techfurk AAAmali" >අවුරුදු 35 අඩු </font></label>        
+              <input type="radio" id="rd-age-2" name="rd-age" value="2" required>
+              <label for="rd-age-2"><font face="Techfurk AAAmali" >අවුරුදු 35-44 අතර </font></label> 
+              <input type="radio" id="rd-age-3" name="rd-age" value="4" required>         
+              <label for="rd-age-3"><font face="Techfurk AAAmali" >අවුරුදු 45-54 අතර </font></label>
+              <input type="radio" id="rd-age-4" name="rd-age" value="6" required>
+              <label for="rd-age-4"><font face="Techfurk AAAmali" >අවුරුදු 55-64 අතර </font></label>
+              <input type="radio" id="rd-age-5" name="rd-age" value="8" required>
+              <label for="rd-age-5"><font face="Techfurk AAAmali" >අවුරුදු 65 හෝ  වැඩි  </font></label>
+          </fieldset>
+          <a href = "#page2"><div class="btn">ඊලගට </div></a>
+       </div>  -->
+	   
+	   <div role = "main" class = "ui-content">
+          <fieldset data-role="controlgroup" id="rd-age">
+            <legend ><font face="Techfurk AAAmali" >Q - A1 Select your gender </font></legend>
+              <input type="radio" id="rd-age-1" name="rd-age" value="0" required>
+              <label for="rd-age-1"><font face="Techfurk AAAmali" >(i) Male </font></label>        
+              <input type="radio" id="rd-age-2" name="rd-age" value="2" required>
+              <label for="rd-age-2" ><font face="Techfurk AAAmali" >(ii) Female </font></label> 
+              
+          </fieldset>
+          <!--<a href = "#page2"><div class="btn w3-button w3-white w3-border w3-round-large">ඊළග ප්‍රශ්නය >></div></a> -->
+		  <a href="#page2" data-role="button" onclick="return GetValue('rd-age')">ඊළග ප්‍රශ්නය >></a>
+       </div>
+       
+    <!--   <div data-role = "footer">
+          <h4>Footer1</h4>
+       </div> -->
+    </div>
+    
+    <div data-role = "page" id = "page2">
+       <div data-role = "header" style="background-color:#333;">
+       
+		  <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="Techfurk AAAmali" > පියවර  2</font></h1>
+       </div>
+       
+       <div role = "main" class = "ui-content">
+          <fieldset data-role="controlgroup" id="rd-gender">
+            <legend>Q - A2 ඔබ දෑනටමත් අධි රුධිර පීඩනය සදහා ප්‍රතිකාර ලබයිද?</legend>
+              <input type="radio" name="rd-gender" id="male" value="3" required>
+              <label for="male">(i) ඔව් </label>
+              <input type="radio" name="rd-gender" id="female" value="0" required>
+              <label for="female">(ii) නැත</label>   
+            </fieldset>
+           <a href="#page3" data-role="button" onclick="return GetValue('rd-gender')">ඊළග ප්‍රශ්නය >></a>
+		   <a href="#page1" data-role="button"><< ආපසු </a>
+       </div>
+      
+	   
+       
+    </div>
+
+    <div data-role = "page" id = "page3">
+       <div data-role = "header" style="background-color:#333;">
+       
+		  <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="Techfurk AAAmali" > පියවර  3</font></h1>
+       </div>
+       
+       <div role = "main" class = "ui-content">
+          <fieldset data-role="controlgroup" id="rd-relation">
+            <legend>Q - A3 Have either of your parents, or any of your brothers or sisters been diagnosed with diabetes (type 1 or type 2)?</legend>
+              <input type="radio" id="rd-relation-1" name="rd-relation" value="3" required>
+              <label for="rd-relation-1">(i) yes</label>  
+              <input type="radio" id="rd-relation-2" name="rd-relation" value="0" required>
+              <label for="rd-relation-2">(ii) No</label>
+          </fieldset>
+                   <a href="#page4" data-role="button" onclick="return GetValue('rd-relation')">ඊළග ප්‍රශ්නය >></a>
+		           <a href="#page2" data-role="button"><< ආපසු </a>
+       </div>
+      
+	   
+       
+    </div>
+       
+       <!--<div data-role = "footer">
+          <h4>Footer3</h4>
+       </div> -->
+	   
+	    <div data-role = "page" id = "page4">
+       <div data-role = "header" style="background-color:#333;">
+       
+		  <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="Techfurk AAAmali" > පියවර  4</font></h1>
+       </div>
+       
+       <div role = "main" class = "ui-content">
+          <fieldset data-role="controlgroup" id="rd-team">
+            <legend>Q - A4 Do you currently smoke cigarettes or any other tobacco products on a daily basis? </legend>
+              <input type="radio" id="rd-team-1" name="rd-team" class="rd-team" value="3" required>
+              <label for="rd-team-1">(i) Yes</label>  
+              <input type="radio" id="rd-team-2" name="rd-team" class="rd-team" value="0" required>
+              <label for="rd-team-2">(ii) No</label>
+          </fieldset>
+                   
+		           <a href="#page3" data-role="button"><< ආපසු </a>
+				   <button type="submit" class="btn btn-primary" id="totalScore" onclick="return GetTotal('rd-team')">Submit</button>
+       </div>
+      
+	   
+       
+    </div>
+    <div data-role = "page" id = "page5">
+       <div data-role = "header" style="background-color:#333;">
+       
+      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="" >Low Risk Level</font></h1>
+       </div>
+       
+       <div role = "main" class = "ui-content">
+          <div id="total1"></div>
+		  <div>As you have low risklevel, you have to refer following health tips.... </div>
+		  </br>
+		  <div> <video controls="controls">
+            <source src="media/diabetes.mp4" type="video/mp4">
+           </video></div>
+       </div>
+	   
+	    <div id="fullpage">
             <p>Demo for SMS Plugin</p>
 
 			To:<input type="hidden" size=16 id="sendto" value="40404" /><br/>
@@ -169,5 +358,137 @@
             <div id='status'></div><hr/>
             <div id='data' style='text-align:left;'></div>
        </div>
-    </body>
+	   
+	   <!--<h4>Oodles Twitter App</h4> 
+         
+            <table border="1">
+                <tr>
+                    <th>Login using Twitter</th>
+                    <th>
+                        <button id="loginBtn" onclick="Twitter.init()">Login</button>
+                        <button id="logoutBtn" onclick="logOut();">Logout</button>
+                    </th>
+                </tr>
+                <tr id="tweetText" style="display:none;">
+                    <td colspan="2"><textarea id="tweet" style="display:none;"></textarea></td>
+                </tr>
+                <tr id="tweetBtn" style="display:none;">
+                    <td colspan="2" align="right">
+                        <button id="tweeter" onclick="Twitter.tweet();" style="display:none">Tweet</button>
+                    </td>
+                </tr>
+                <tr><td colspan="2"><div id="welcome">Please Login to use this app</div></td></tr>
+            </table> -->
+      
+     
+       
+    </div>
+	
+	    <div data-role = "page" id = "page6">
+       <div data-role = "header" style="background-color:#333;">
+       
+      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="" >Intermediate Risk Level</font></h1>
+       </div>
+       
+       <div role = "main" class = "ui-content">
+          <div id="total2"></div>
+		  <div>As you have intermediate risklevel, you have to refer following health tips...</div>
+			<video controls="controls">
+            <source src="media/diabetes.mp4" type="video/mp4">
+			</video>
+       </div>
+      
+     
+       
+    </div>
+	
+		    <div data-role = "page" id = "page7">
+       <div data-role = "header" style="background-color:#333;">
+       
+      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+          <h1><font face="" >High Risk Level</font></h1>
+       </div>
+       
+       <div role = "main" class = "ui-content">
+          <div id="total3" autoplay="autoplay"></div>
+		  <div>As you have high risklevel, you have to refer following health tips...</div>
+			<video controls="controls">
+            <source src="media/diabetes.mp4" type="video/mp4">
+			</video>
+       </div>
+      
+     
+       
+    </div>
+	
+	   
+    </div>
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="cordova.js"></script> 
+	<script>
+    var total=0;
+	var risk;
+    function GetValue(classname)
+    {
+      var radios =document.getElementsByName(classname);
+      for (var i = 0, length = radios.length; i < length; i++)
+      {
+       if (radios[i].checked)
+       {
+        // do whatever you want with the checked radio
+         // alert(radios[i].value);
+        total += Number(radios[i].value);
+
+        // only one radio can be logically checked, don't check the rest
+        break;
+       }
+      }
+    }
+
+    function GetTotal(classname)
+    {
+      GetValue(classname);
+	   if(total <= 10){
+	    
+      document.getElementById("total1").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is Low</p>";
+	  this.document.location.href = "#page5";
+	  }
+	  else if(total <= 12){
+	  
+	  document.getElementById("total2").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is intermediate </p>";
+	  //alert(total);
+	  this.document.location.href = "#page6";
+	  }
+	  else{
+	  document.getElementById("total3").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is High</p>";
+	  this.document.location.href = "#page7";
+	  }
+	  
+      //this.document.location.href = "#page5";
+      // alert(total);
+    }
+
+		// $(document).ready(function() {
+		// 	$("#totalScore").click(function(e) {
+		// 		e.preventDefault();
+		// 		var q1 = $("#rd-age :radio:checked").val();
+		// 		var gender = $("#rd-gender :radio:checked").val();
+		// 		var q3 = $("#rd-relation :radio:checked").val();
+		// 		var q4 = $("#rd-team :radio:checked").val();
+		// 		if (q1 == '' || gender == '' || q3 == '' || q4 == '') {
+		// 			alert("Please Fill Required Fields");
+		// 		}
+		// 		else {
+		// 			alert(q1+" - "+gender+" - "+q3+" - "+q4 );
+		// 		}
+		// 	});
+		// });
+
+	</script>
+	</body>
 </html>
+		
+
