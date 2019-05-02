@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/2.0"
+        id        = "com.nadeesha9090.demo2"
+        versionCode="11" 
+        version   = "2.0.0">
+
+
+
+    <name>SelfHelp</name>
+
+    <description>
+       Diabates Prevention
+    </description>
+
+    <author href="http://thaalakaz.blogspot.com/" email="nadeesha9090@gmail.com">
+        Nadeesha Thilakarathne
+    </author>
+	
+	
+	<gap:plugin name="cordova-plugin-sms" source="npm" />
+	<!--plugin name="cordova-plugin-android-permissions" source="npm" spec="1.0.0" />
+	<plugin name="cordova-plugin-sms-receive" source="npm" spec="1.0.2" /--> 
+	
+	
+    <icon src="icons/logo.jpg" />
+	  <allow-intent href="http://*/*" />
+	  <allow-intent href="http://responsivefoodfeedingsrilanka.blogspot.com/" />
+	  <allow-intent href="tel:*" />
+	  <allow-intent href="sms:*" />
+	  <allow-intent href="mailto:*" />
+	  <allow-intent href="geo:*" />
+
+</widget>
