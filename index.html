@@ -17,6 +17,21 @@
 		<script type="text/javascript" charset="utf-8" src="js/ChildBrowser.js"></script>
 		<link href='https://googledrive.com/host/0B4zcNjwo-rgsTjc0OEtJby1pbFk/techfurk-aaamali.css' rel='stylesheet' type='text/css'>
         <title>Hello World</title>
+	    
+	    	<script>
+			var self = null;
+			var app = {
+		        // Application Constructor
+		    	initialize: function() {
+			this.bindEvents();
+			this.client = new Keen({
+			    projectId: "5cca7c8fc9e77c0001cf9e71",
+			    readKey: "28CB26882BF19DFC05E0D77B65FEDC0AC8E552E6D42DD7A65D390FBEB0CA7F54FC636C1F2079D9E6D07343C05CD9196E27B80A23414250906B1BA2FD3C8414FA98D2308A6EC56FF4BC956E72E462EB84101CD92EA3C905CC555F8BB7B29FC0D1",
+			    writeKey: "58DA8DDC51250540624BE1EB05F51453828315571B500073F18DD2F225A7B35A5027A87EC8BB054F313780FD8F815651A19432103B5E1708FBDDC19A037823FE4591ADCF2C47B60D8D77D2F3CDB105D92F647BAC6AA89F8D3F0B9F9ED6312991"
+			});
+			self = this;
+		    	},
+		</script>
 		
 		<script>
 		var _hmt = _hmt || [];
