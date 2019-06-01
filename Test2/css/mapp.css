@@ -1,0 +1,77 @@
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 3px 6px 13px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 8px;
+}
+
+a{
+  text-decoration: none;
+}
+a.back
+{
+  width: auto;
+  height: 30px;
+}
+a div.btn{
+    text-align: center;
+    padding: 15px 20px;
+    background-color: black;
+    color: #fff;
+}
+
+.ui-content a div.btn{
+    text-align: center;
+    padding: 15px 20px;
+    background-color: #fff;
+    color: #000;
+	border-radius: 8px;
+}
+
+.ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
+	color: #333 !important;
+}
+
+.ui-page-theme-a a:active, html .ui-bar-a a:active, html .ui-body-a a:active, html body .ui-group-theme-a a:active{
+	color: #333 !important;
+}
+
+.ui-page-theme-a a:focus, html .ui-bar-a a:focus, html .ui-body-a a:focus, html body .ui-group-theme-a a:focus{
+	color: #333 !important;
+}
+
+
+.ui-btn.ui-radio-off:after{
+	display:none !important;
+}
+
+.ui-btn.ui-radio-on:after {
+	display:none !important;
+	}
+
+	
+
+.ui-btn.ui-radio-on {
+background-color: #464646!important;
+color: white!important;
+}
+
+.page .header a.button{
+background-color: #333!important;
+color: #fff!important; 
+}
+
+.ui-header .ui-title, .ui-footer .ui-title , .ui-header .ui-link{
+    background-color: #333!important;
+    color: #fff!important;
+}
+
+
+  
+
