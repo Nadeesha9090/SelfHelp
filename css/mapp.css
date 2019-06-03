@@ -55,16 +55,19 @@ a div.btn{
 	display:none !important;
 	}
 
-	
-
 .ui-btn.ui-radio-on {
 background-color: #464646!important;
 color: white!important;
 }
 
+
 .ui-controlgroup-vertical .ui-controlgroup-controls .ui-btn{
 border-bottom-width: 1px!important;
 }
+
+ui-icon-radio-on {
+	display:none !important;
+	}
 
 .page .header a.button{
 background-color: #333!important;
