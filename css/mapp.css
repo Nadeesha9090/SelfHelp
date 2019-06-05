@@ -79,6 +79,13 @@ color: #fff!important;
     color: #fff!important;
 }
 
+.ui-checkbox .ui-btn-icon-left .ui-icon, .ui-radio .ui-btn-icon-left .ui-icon{
+  display: none!important;
+}
 
+.ui-header .ui-btn-inner .ui-btn-text{
+  color: unset!important;
+  text-shadow: 0 -1px 1px #000!important;
+}
   
 
