@@ -31,29 +31,29 @@ a div.btn{
     padding: 15px 20px;
     background-color: #fff;
     color: #000;
-	border-radius: 8px;
+  border-radius: 8px;
 }
 
 .ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
-	color: #333 !important;
+  color: #333 !important;
 }
 
 .ui-page-theme-a a:active, html .ui-bar-a a:active, html .ui-body-a a:active, html body .ui-group-theme-a a:active{
-	color: #333 !important;
+  color: #333 !important;
 }
 
 .ui-page-theme-a a:focus, html .ui-bar-a a:focus, html .ui-body-a a:focus, html body .ui-group-theme-a a:focus{
-	color: #333 !important;
+  color: #333 !important;
 }
 
 
 .ui-btn.ui-radio-off:after{
-	display:none !important;
+  display:none !important;
 }
 
 .ui-btn.ui-radio-on:after {
-	display:none !important;
-	}
+  display:none !important;
+  }
 
 .ui-btn.ui-radio-on {
 background-color: #464646!important;
@@ -66,8 +66,8 @@ border-bottom-width: 1px!important;
 }
 
 ui-icon-radio-on {
-	display:none !important;
-	}
+  display:none !important;
+  }
 
 .page .header a.button{
 background-color: #333!important;
@@ -87,5 +87,4 @@ color: #fff!important;
   color: unset!important;
   text-shadow: 0 -1px 1px #000!important;
 }
-  
 
