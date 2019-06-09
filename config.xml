@@ -24,7 +24,10 @@
 	
 	
     <icon src="icons/logo.jpg" />
+	  
 	  <allow-intent href="http://*/*" />
+	  <allow-intent href="http://*/*" launch-external="yes"/>
+  	  <allow-intent href="https://*/*" launch-external="yes"/>
 	  <allow-intent href="http://responsivefoodfeedingsrilanka.blogspot.com/" />
 	  <allow-intent href="tel:*" />
 	  <allow-intent href="sms:*" />
