@@ -174,13 +174,11 @@
           $('span#intercept').text( 'intercept ' + (interceptEnabled ? 'ON' : 'OFF') );
           $('button#enable_intercept').text( interceptEnabled ? 'Disable' : 'Enable' );
         }
-    
-    
 
         </script>
     
     
-    <div data-role = "page" id = "page1">
+<div data-role = "page" id = "page1">
        <div data-role = "header" style="background-color:#333;">
           <!-- <button class="ui-btn ui-icon-home ui-btn-icon-left">Home Button</button> -->
       <!--<a href=""><div class="btn">Home</div></a> -->
@@ -190,16 +188,21 @@
        
      
      <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-gender">
-            <legend ><font face="Techfurk AAAmali" >Q1 - ඔබගේ ස්ත්‍රී / පුරුෂ භාවය තෝරන්න </font></legend>
-              <input type="radio" id="rd-gender-1" name="rd-gender" value="0" required>
-              <label for="rd-gender-1"><font face="Techfurk AAAmali" >(i) ස්ත්‍රී </font></label>        
-              <input type="radio" id="rd-gender-2" name="rd-gender" value="3" required>
-              <label for="rd-gender-2" ><font face="Techfurk AAAmali" >(ii) පුරුෂ </font></label> 
-              
-          </fieldset>
+          <fieldset data-role="controlgroup" id="rd-age">
+            <legend>Q2 - ඔබගේ වයස් පරතරය තෝරන්න</legend>
+              <input type="radio" name="rd-age" id="rd-age-1" value="0" required>
+              <label for="rd-age-1">(i) අවුරුදු 35 ට අඩු </label>
+              <input type="radio" name="rd-age" id="rd-age-2" value="2" required>
+              <label for="rd-age-2">(ii) අවු. 35 - 44</label>
+              <input type="radio" name="rd-age" id="rd-age-3" value="4" required>
+              <label for="rd-age-3">(iii) අවු. 45 - 54</label>
+              <input type="radio" name="rd-age" id="rd-age-4" value="6" required>
+              <label for="rd-age-4">(iv) අවු. 55 - 64</label>
+              <input type="radio" name="rd-age" id="rd-age-5" value="8" required>
+              <label for="rd-age-5">(v) අවුරුදු 65 ට වැඩි</label> 
+            </fieldset>
           <!--<a href = "#page2"><div class="btn w3-button w3-white w3-border w3-round-large">ඊළග ප්‍රශ්නය >></div></a> -->
-      <a href="#page2" data-role="button" onclick="return GetValue('rd-gender')">ඊළග ප්‍රශ්නය >></a>
+      <a href="#page2" data-role="button" onclick="return GetValue('rd-age')">ඊළග ප්‍රශ්නය >></a>
        </div>
        
     <!--   <div data-role = "footer">
@@ -215,25 +218,17 @@
        </div>
        
        <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-age">
-            <legend>Q2 - ඔබගේ වයස් පරතරය තෝරන්න</legend>
-              <input type="radio" name="rd-age" id="rd-age-1" value="0" required>
-              <label for="rd-age-1">(i) අවුරුදු 35 ට අඩු </label>
-              <input type="radio" name="rd-age" id="rd-age-2" value="2" required>
-              <label for="rd-age-2">(ii) අවු. 35 - 44</label>
-              <input type="radio" name="rd-age" id="rd-age-3" value="4" required>
-              <label for="rd-age-3">(iii) අවු. 45 - 54</label>
-              <input type="radio" name="rd-age" id="rd-age-4" value="6" required>
-              <label for="rd-age-4">(iv) අවු. 55 - 64</label>
-              <input type="radio" name="rd-age" id="rd-age-5" value="8" required>
-              <label for="rd-age-5">(v) අවුරුදු 65 ට වැඩි</label> 
-            </fieldset>
-           <a href="#page3" data-role="button" onclick="return GetValue('rd-age')">ඊළග ප්‍රශ්නය >></a>
+          <fieldset data-role="controlgroup" id="rd-gender">
+            <legend ><font face="Techfurk AAAmali" >Q1 - ඔබගේ ස්ත්‍රී / පුරුෂ භාවය තෝරන්න </font></legend>
+              <input type="radio" id="rd-gender-1" name="rd-gender" value="0" required>
+              <label for="rd-gender-1"><font face="Techfurk AAAmali" >(i) ස්ත්‍රී </font></label>        
+              <input type="radio" id="rd-gender-2" name="rd-gender" value="3" required>
+              <label for="rd-gender-2" ><font face="Techfurk AAAmali" >(ii) පුරුෂ </font></label> 
+              
+          </fieldset>
+           <a href="#page3" data-role="button" onclick="return GetValue('rd-gender')">ඊළග ප්‍රශ්නය >></a>
        <a href="#page1" data-role="button"><< ආපසු </a>
-       </div>
-      
-     
-       
+       </div>        
     </div>
 
     <div data-role = "page" id = "page3">
