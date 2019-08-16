@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <link rel="stylesheet" type="text/css" href="css/mapp.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/keen.min.js"></script>
-        <script type="text/javascript" src="jquery-1.9.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/keen.min.js"></script>
+    <script type="text/javascript" src="jquery-1.9.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" /> 
+    <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/jquery.mobile-1.1.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jsOAuth-1.3.6.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/ChildBrowser.js"></script>
     <link href='https://googledrive.com/host/0B4zcNjwo-rgsTjc0OEtJby1pbFk/techfurk-aaamali.css' rel='stylesheet' type='text/css'>
-        <title>Hello World</title>
-      
-        
-    
+    <title>Diabetes Self Help</title>
+
+
+
     <script>
-    var _hmt = _hmt || [];
-    (function() {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?73c27e26f610eb3c9f3feb0c75b03925";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-    })();
+      var _hmt = _hmt || [];
+      (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?73c27e26f610eb3c9f3feb0c75b03925";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      })();
     </script>
-        
-   </head>
-    <body onload="onLoad()">
-        <script>
+
+  </head>
+  <body onload="onLoad()">
+    <script>
         function onLoad() {
             if(( /(ipad|iphone|ipod|android)/i.test(navigator.userAgent) )) {
                 document.addEventListener('deviceready', initApp, false);
@@ -47,19 +47,19 @@
 
         function initApp() {
           if (! SMS ) { alert( 'SMS plugin not ready' ); return; }
-          
+
             document.addEventListener('onSMSArrive', function(e){
               var data = e.data;
               smsList.push( data );
-              
+
               updateStatus('SMS arrived, count: ' + smsList.length );
-              
+
               var divdata = $('div#data');
               divdata.html( divdata.html() + JSON.stringify( data ) );
-              
+
             });
         }
-        
+
         function update( id, str ) {
           $('div#' + id).html( str );
         }
@@ -69,7 +69,7 @@
         function updateData( str ) {
           $('div#data').html( str );
         }
-        
+
         function sendSMS() {
           var sendto = $('input#sendto').val().trim();
           var textmsg = $('input#textmsg').val();
@@ -98,11 +98,11 @@
         }
         function listSMS() {
         updateData('');
-        
+
           if(SMS) SMS.listSMS({}, function(data){
           updateStatus('sms listed as json array');
           //updateData( JSON.stringify(data) );
-          
+
           var html = "";
             if(Array.isArray(data)) {
               for(var i in data) {
@@ -112,7 +112,7 @@
               }
             }
             updateData( html );
-            
+
           }, function(err){
             updateStatus('error list sms: ' + err);
           });
@@ -120,13 +120,13 @@
         function deleteLastSMS() {
         updateData('');
 
-          if(smsList.length == 0) {
+        if(smsList.length == 0) {
             updateStatus( 'no sms id to delete' );
             return;
           }
-          
+
         var sms = smsList.pop();
-        
+
           if(SMS) SMS.deleteSMS({
             _id : sms["_id"]
           }, function( n ){
@@ -137,12 +137,12 @@
         }
         function restoreAllSMS() {
         updateData('');
-        
+
           if(SMS) SMS.restoreSMS(smsList, function( n ){
             // clear the list if restore successfully
             smsList.length = 0;
             updateStatus(n + ' sms messages restored');
-            
+
           }, function(err){
             updateStatus('error restore sms: ' + err);
           });
@@ -161,491 +161,466 @@
             updateStatus('failed to stop watching');
           });
         }
-        
+
         function toggleIntercept() {
           interceptEnabled = ! interceptEnabled;
-          
+
           if(interceptEnabled) { // clear the list before we start intercept
             smsList.length = 0;
           }
-          
+
           if(SMS) SMS.enableIntercept(interceptEnabled, function(){}, function(){});
-          
+
           $('span#intercept').text( 'intercept ' + (interceptEnabled ? 'ON' : 'OFF') );
           $('button#enable_intercept').text( interceptEnabled ? 'Disable' : 'Enable' );
         }
 
         </script>
-    
-    
-<div data-role = "page" id = "page1">
-       <div data-role = "header" style="background-color:#333;">
-          <!-- <button class="ui-btn ui-icon-home ui-btn-icon-left">Home Button</button> -->
-      <!--<a href=""><div class="btn">Home</div></a> -->
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  1</font></h1>
-       </div>
-       
-     
-     <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-age">
-            <legend>Q2 - ඔබගේ වයස් පරතරය තෝරන්න</legend>
-              <input type="radio" name="rd-age" id="rd-age-1" value="0" required>
-              <label for="rd-age-1">(i) අවුරුදු 35 ට අඩු </label>
-              <input type="radio" name="rd-age" id="rd-age-2" value="2" required>
-              <label for="rd-age-2">(ii) අවු. 35 - 44</label>
-              <input type="radio" name="rd-age" id="rd-age-3" value="4" required>
-              <label for="rd-age-3">(iii) අවු. 45 - 54</label>
-              <input type="radio" name="rd-age" id="rd-age-4" value="6" required>
-              <label for="rd-age-4">(iv) අවු. 55 - 64</label>
-              <input type="radio" name="rd-age" id="rd-age-5" value="8" required>
-              <label for="rd-age-5">(v) අවුරුදු 65 ට වැඩි</label> 
-            </fieldset>
-          <!--<a href = "#page2"><div class="btn w3-button w3-white w3-border w3-round-large">ඊළග ප්‍රශ්නය >></div></a> -->
-      <a href="#page2" data-role="button" onclick="return GetValue('rd-age')">ඊළග ප්‍රශ්නය >></a>
-       </div>
-       
-    <!--   <div data-role = "footer">
-          <h4>Footer1</h4>
-       </div> -->
+
+
+    <div data-role = "page" id = "page1">
+      <div data-role = "header" style="background-color:#333;">
+        <!-- <button class="ui-btn ui-icon-home ui-btn-icon-left">Home Button</button> -->
+        <!--<a href=""><div class="btn">Home</div></a> -->
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  1</font></h1>
+      </div>
+
+
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-age">
+          <legend>Q1 - ඔබගේ වයස් පරතරය තෝරන්න</legend>
+          <input type="radio" name="rd-age" id="rd-age-1" value="0" required>
+          <label for="rd-age-1">(i) අවුරුදු 35 ට අඩු </label>
+          <input type="radio" name="rd-age" id="rd-age-2" value="2" required>
+          <label for="rd-age-2">(ii) අවු. 35 - 44</label>
+          <input type="radio" name="rd-age" id="rd-age-3" value="4" required>
+          <label for="rd-age-3">(iii) අවු. 45 - 54</label>
+          <input type="radio" name="rd-age" id="rd-age-4" value="6" required>
+          <label for="rd-age-4">(iv) අවු. 55 - 64</label>
+          <input type="radio" name="rd-age" id="rd-age-5" value="8" required>
+          <label for="rd-age-5">(v) අවුරුදු 65 ට වැඩි</label>
+        </fieldset>
+        <!--<a href = "#page2"><div class="btn w3-button w3-white w3-border w3-round-large">ඊළග ප්‍රශ්නය >></div></a> -->
+        <a href="#page2" data-role="button" onclick="return GetValue('rd-age')">ඊළග ප්‍රශ්නය >></a>
+      </div>
     </div>
-    
+
     <div data-role = "page" id = "page2">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  2</font></h1>
-       </div>
-       
+
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  2</font></h1>
+      </div>
+
        <div role = "main" class = "ui-content">
           <fieldset data-role="controlgroup" id="rd-gender">
-            <legend ><font face="Techfurk AAAmali" >Q1 - ඔබගේ ස්ත්‍රී / පුරුෂ භාවය තෝරන්න </font></legend>
-              <input type="radio" id="rd-gender-1" name="rd-gender" value="0" required>
-              <label for="rd-gender-1"><font face="Techfurk AAAmali" >(i) ස්ත්‍රී </font></label>        
-              <input type="radio" id="rd-gender-2" name="rd-gender" value="3" required>
-              <label for="rd-gender-2" ><font face="Techfurk AAAmali" >(ii) පුරුෂ </font></label> 
-              
+            <legend ><font face="Techfurk AAAmali" >Q2 - ඔබගේ ස්ත්‍රී / පුරුෂ භාවය තෝරන්න </font></legend>
+            <input type="radio" id="rd-gender-1" name="rd-gender" value="0" required>
+            <label for="rd-gender-1"><font face="Techfurk AAAmali" >(i) ස්ත්‍රී </font></label>
+            <input type="radio" id="rd-gender-2" name="rd-gender" value="3" required>
+            <label for="rd-gender-2" ><font face="Techfurk AAAmali" >(ii) පුරුෂ </font></label>
+
           </fieldset>
-           <a href="#page3" data-role="button" onclick="return GetValue('rd-gender')">ඊළග ප්‍රශ්නය >></a>
-       <a href="#page1" data-role="button"><< ආපසු </a>
-       </div>        
+          <a href="#page3" data-role="button" onclick="return GetValue('rd-gender')">ඊළග ප්‍රශ්නය >></a>
+          <a href="#page1" data-role="button"><< ආපසු </a>
+       </div>
     </div>
 
     <div data-role = "page" id = "page3">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  3</font></h1>
-       </div>
-       
-        <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-country">
-            <legend>Q3 - ඔබ උපන් රට තෝරන්න</legend>
-              <input type="radio" id="rd-country-1" name="rd-country" value="2" required>
-              <label for="rd-country-1">(i) ආසියාතික රටකි</label>  
-              <input type="radio" id="rd-country-2" name="rd-country" value="0" required>
-              <label for="rd-country-2">(ii) ඕස්ත්‍රරේලියාව ව </label>
-          </fieldset>
-                   <a href="#page4" data-role="button" onclick="return GetValue('rd-country')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page2" data-role="button"><< ආපසු </a>
-        </div>     
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  3</font></h1>
       </div>
-       
-       <!--<div data-role = "footer">
-          <h4>Footer3</h4>
-       </div> -->
-     
+
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-country">
+          <legend>Q3 - ඔබ උපන් රට තෝරන්න</legend>
+            <input type="radio" id="rd-country-1" name="rd-country" value="2" required>
+            <label for="rd-country-1">(i) ආසියාතික රටකි</label>
+            <input type="radio" id="rd-country-2" name="rd-country" value="0" required>
+            <label for="rd-country-2">(ii) ඕස්ට්‍රේලියාව </label>
+        </fieldset>
+        <a href="#page4" data-role="button" onclick="return GetValue('rd-country')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page2" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
 
     <div data-role = "page" id = "page4">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  4</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-family">
-            <legend>Q4 -  ඔබගේ ගෙමවුපියන් ග ෝ සග ෝෙර සග ෝෙරියන් අතරින්, එක් අයකු ග ෝ දියවැඩියයව සඳ ය ප්‍රතිකායර
-ලබයිෙ?</legend>
-              <input type="radio" id="rd-family-1" name="rd-family" value="3" required>
-              <label for="rd-family-1">(i) ඔව්</label>  
-              <input type="radio" id="rd-family-2" name="rd-family" value="0" required>
-              <label for="rd-family-2">(ii) නැත </label>
-          </fieldset>
-                   <a href="#page5" data-role="button" onclick="return GetValue('rd-family')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page3" data-role="button"><< ආපසු </a>
-         </div>
+      <div data-role = "header" style="background-color:#333;">
+        <h1><font face="Techfurk AAAmali" > පියවර  4</font></h1>
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
       </div>
+
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-family">
+          <legend>Q4 -  ඔබගේ දෙමවුපියන් හෝ සහෝදර සහෝදරියන් අතරින්, එක් අයකු හෝ දියවැඩියාව සඳහා ප්‍රතිකාර ලබයිද?</legend>
+            <input type="radio" id="rd-family-1" name="rd-family" value="3" required>
+            <label for="rd-family-1">(i) ඔව්</label>
+            <input type="radio" id="rd-family-2" name="rd-family" value="0" required>
+            <label for="rd-family-2">(ii) නැත </label>
+        </fieldset>
+        <a href="#page5" data-role="button" onclick="return GetValue('rd-family')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page3" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
 
     <div data-role = "page" id = "page5">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  5</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-glucose">
-            <legend>Q5 -  ඔබ යම් අවස්ථාවක ඔබට අධි රුධිර ග්ලුකෝස් (සීනි ) ඇති බව සොයාගන තිබේද? (උදා : සෞඛ්‍යය පරීක්ෂනයකදී, අසනීප අවස්ථාවකදී හෝ ගර්භණී සමයේදී )</legend>
-              <input type="radio" id="rd-glucose-1" name="rd-glucose" value="6" required>
-              <label for="rd-glucose-1">(i) ඔව්</label>  
-              <input type="radio" id="rd-glucose-2" name="rd-glucose" value="0" required>
-              <label for="rd-glucose-2">(ii) නැත </label>
-          </fieldset>
-                   <a href="#page6" data-role="button" onclick="return GetValue('rd-glucose')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page4" data-role="button"><< ආපසු </a>
-         </div>
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  5</font></h1>
       </div>
+
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-glucose">
+          <legend>Q5 -  ඔබ යම් අවස්ථාවක ඔබට අධි රුධිර ග්ලුකෝස් (සීනි ) ඇති බව සොයාගන තිබේද? (උදා : සෞඛ්‍යය පරීක්ෂනයකදී, අසනීප අවස්ථාවකදී හෝ ගර්භණී සමයේදී )</legend>
+          <input type="radio" id="rd-glucose-1" name="rd-glucose" value="6" required>
+          <label for="rd-glucose-1">(i) ඔව්</label>
+
+          <input type="radio" id="rd-glucose-2" name="rd-glucose" value="0" required>
+          <label for="rd-glucose-2">(ii) නැත </label>
+        </fieldset>
+        <a href="#page6" data-role="button" onclick="return GetValue('rd-glucose')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page4" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
 
     <div data-role = "page" id = "page6">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  6</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-hbp">
-            <legend>Q6 -  ඔබ දෑනටමත් අධි රුධිර පීඩනය සදහා ප්‍රතිකාර ලබයිද?</legend>
-              <input type="radio" id="rd-hbp-1" name="rd-hbp" value="2" required>
-              <label for="rd-hbp-1">(i) ඔව්</label>  
-              <input type="radio" id="rd-hbp-2" name="rd-hbp" value="0" required>
-              <label for="rd-hbp-2">(ii) නැත </label>
-          </fieldset>
-                   <a href="#page7" data-role="button" onclick="return GetValue('rd-hbp')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page5" data-role="button"><< ආපසු </a>
-         </div>
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  6</font></h1>
       </div>
 
-      <div data-role = "page" id = "page7">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  7</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-cigrt">
-            <legend>Q7 -  ඔබ සිගරට් හෝ දුම්කොළ භාවිත කරයිද?</legend>
-              <input type="radio" id="rd-cigrt-1" name="rd-cigrt" value="2" required>
-              <label for="rd-cigrt-1">(i) ඔව්</label>  
-              <input type="radio" id="rd-cigrt-2" name="rd-cigrt" value="0" required>
-              <label for="rd-cigrt-2">(ii) නැත </label>
-          </fieldset>
-                   <a href="#page8" data-role="button" onclick="return GetValue('rd-cigrt')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page6" data-role="button"><< ආපසු </a>
-         </div>
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-hbp">
+          <legend>Q6 -  ඔබ දෑනටමත් අධි රුධිර පීඩනය සදහා ප්‍රතිකාර ලබයිද?</legend>
+          <input type="radio" id="rd-hbp-1" name="rd-hbp" value="2" required>
+          <label for="rd-hbp-1">(i) ඔව්</label>
+          <input type="radio" id="rd-hbp-2" name="rd-hbp" value="0" required>
+          <label for="rd-hbp-2">(ii) නැත </label>
+        </fieldset>
+        <a href="#page7" data-role="button" onclick="return GetValue('rd-hbp')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page5" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
+
+    <div data-role = "page" id = "page7">
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  7</font></h1>
       </div>
 
-      <div data-role = "page" id = "page8">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  8</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-vegfruit">
-            <legend>Q8 -  ඔබගේ එළවලළු හා පළතුරු භාවිතය තෝරන්න</legend>
-              <input type="radio" id="rd-vegfruit-1" name="rd-vegfruit" value="0" required>
-              <label for="rd-vegfruit-1">(i) ඔව්</label>  
-              <input type="radio" id="rd-vegfruit-2" name="rd-vegfruit" value="1" required>
-              <label for="rd-vegfruit-2">(ii) නැත </label>
-          </fieldset>
-                   <a href="#page9" data-role="button" onclick="return GetValue('rd-vegfruit')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page7" data-role="button"><< ආපසු </a>
-         </div>
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-cigrt">
+          <legend>Q7 -  ඔබ සිගරට් හෝ දුම්කොළ භාවිත කරයිද?</legend>
+            <input type="radio" name="bedStatus" id="rd-cigrt-1" value="a" onclick="show_cig_content(1)">
+            <label for="rd-cigrt-1">(i) ඔව්</label>
+          <span id = "cig_related_content">
+
+          </span>
+
+          <input type="radio" name="bedStatus" id="rd-cigrt-2" value="b" onclick="show_cig_content(0)">
+
+          <label for="rd-cigrt-2">(ii) නැත </label>
+        </fieldset>
+        <a href="#page8" data-role="button" onclick="return GetValue('rd-cigrt')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page6" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
+
+    <div data-role = "page" id = "page8">
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  8</font></h1>
       </div>
 
-      <div data-role = "page" id = "page9">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  9</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-exercise">
-            <legend>Q9 -  ඔබ සතියකට අවම වශයෙන් පැය දෙක හමාරක් ශාරීරික ක්‍රියාකාරම් වල නිරත වන්නේද?</legend>
-              <input type="radio" id="rd-exercise-1" name="rd-exercise" value="0" required>
-              <label for="rd-exercise-1">(i) ඔව්</label>  
-              <input type="radio" id="rd-exercise-2" name="rd-exercise" value="2" required>
-              <label for="rd-exercise-2">(ii) නැත </label>
-          </fieldset>
-                   <a href="#page10" data-role="button" onclick="return GetValue('rd-exercise')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page8" data-role="button"><< ආපසු </a>
-         </div>
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-vegfruit">
+          <legend>Q8 -  ඔබගේ එළවලළු හා පළතුරු භාවිතය තෝරන්න</legend>
+          <input type="radio" id="rd-vegfruit-1" name="rd-vegfruit" value="0" required>
+          <label for="rd-vegfruit-1">(i) ඔව්</label>
+          <input type="radio" id="rd-vegfruit-2" name="rd-vegfruit" value="1" required>
+          <label for="rd-vegfruit-2">(ii) නැත </label>
+        </fieldset>
+        <a href="#page9" data-role="button" onclick="return GetValue('rd-vegfruit')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page7" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
+
+    <div data-role = "page" id = "page9">
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  9</font></h1>
       </div>
 
-      <div data-role = "page" id = "page10">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  10</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-            <fieldset data-role="controlgroup" id="rd-waist">
-            <legend>Q10 -  ඔබගේ ඉණෙහි ප්‍රමාණය, ඉළ ඇටයට පහළින් ගත්විට කොපමණද? (සිට ගෙන සිටින විට සාමාන්‍යයෙන් පෙකනිය පිහිටි මට්ටම )</legend>
-              <p>පුරුෂ</p>
-              <input type="radio" id="rd-waist-1" name="rd-waist" value="0" required>
-              <label for="rd-waist-1">(i) සෙ.මී. 90 ට අඩු</label>  
-              <input type="radio" id="rd-waist-2" name="rd-waist" value="4" required>
-              <label for="rd-waist-2">(ii) සෙ.මී. 90 - 100 </label>
-              <input type="radio" id="rd-waist-3" name="rd-waist" value="7" required>
-              <label for="rd-waist-3">(iii) සෙ.මී.100 ට වැඩි</label>  
-              
-              <p>ස්ත්‍රී</p>
-              <input type="radio" id="rd-waist-4" name="rd-waist" value="0" required>
-              <label for="rd-waist-4">(i) සෙ.මී. 80 ට අඩු </label>
-              <input type="radio" id="rd-waist-5" name="rd-waist" value="4" required>
-              <label for="rd-waist-5">(ii) සෙ.මී. 80 - 90 </label>
-              <input type="radio" id="rd-waist-6" name="rd-waist" value="7" required>
-              <label for="rd-waist-6">(iii) සෙ.මී. 90 ට වැඩි</label>
-          </fieldset>
-                   <!-- <a href="#page11" data-role="button" onclick="return GetValue('rd-waist')">ඊළග ප්‍රශ්නය >></a> -->
-               <a href="#page9" data-role="button"><< ආපසු </a>
-               <button type="submit" class="btn btn-primary" id="totalScore" onclick="return GetTotal('rd-waist')">Submit</button>
-         </div>
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-exercise">
+          <legend>Q9 -  ඔබ සතියකට අවම වශයෙන් පැය දෙක හමාරක් ශාරීරික ක්‍රියාකාරම් වල නිරත වන්නේද?</legend>
+          <input type="radio" id="rd-exercise-1" name="rd-exercise" value="0" required>
+          <label for="rd-exercise-1">(i) ඔව්</label>
+          <input type="radio" id="rd-exercise-2" name="rd-exercise" value="2" required>
+          <label for="rd-exercise-2">(ii) නැත </label>
+        </fieldset>
+        <a href="#page10" data-role="button" onclick="return GetValue('rd-exercise')">ඊළග ප්‍රශ්නය >></a>
+        <a href="#page8" data-role="button"><< ආපසු </a>
+      </div>
+    </div>
+
+    <div data-role = "page" id = "page10">
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="Techfurk AAAmali" > පියවර  10</font></h1>
       </div>
 
-<!--  <div data-role = "page" id = "page11">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="Techfurk AAAmali" > පියවර  11</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <fieldset data-role="controlgroup" id="rd-waistFemale">
-            <legend>Q11 -  ඔබගේ ඉණෙහි ප්‍රමාණය, ඉළ ඇටයට පහළින් ගත්විට කොපමණද? (සිට ගෙන සිටින විට සාමාන්‍යයෙන් පෙකනිය පිහිටි මට්ටම )</legend>
-              <p>ස්ත්‍රී</p>
-              <input type="radio" id="rd-waistFemale1" name="rd-waistFemale" value="0" required>
-              <label for="rd-waistFemale1">(i) සෙ.මී. 80 ට අඩු </label>
-              <input type="radio" id="rd-waistFemale2" name="rd-waistFemale" value="4" required>
-              <label for="rd-waistFemale2">(ii) සෙ.මී. 80 - 90 </label>
-              <input type="radio" id="rd-waistFemale3" name="rd-waistFemale" value="7" required>
-              <label for="rd-waistFemale3">(iii) සෙ.මී. 90 ට වැඩි</label>
-          </fieldset>
-                   <a href="#page10" data-role="button" onclick="return GetValue('rd-waistFemale')">ඊළග ප්‍රශ්නය >></a>
-               <a href="#page9" data-role="button"><< ආපසු </a>
-         </div>
-      </div> -->
+      <div role = "main" class = "ui-content">
+        <fieldset data-role="controlgroup" id="rd-waist">
+          <legend>Q10 -  ඔබගේ ඉණෙහි ප්‍රමාණය, ඉළ ඇටයට පහළින් ගත්විට කොපමණද? (සිට ගෙන සිටින විට සාමාන්‍යයෙන් පෙකනිය පිහිටි මට්ටම )</legend>
+          <span id = "gender_related_content">
+            <p>ස්ත්‍රී</p>
+            <input type='radio' id='rd-waist-4' name='rd-waist' value='0' required>
+            <label for='rd-waist-4'>(i) සෙ.මී. 80 ට අඩු </label>
+            <input type='radio' id='rd-waist-5' name='rd-waist' value='4' required>
+            <label for='rd-waist-5'>(ii) සෙ.මී. 80 - 90 </label>
+            <input type='radio' id='rd-waist-6' name='rd-waist' value='7' required>
+            <label for='rd-waist-6'>(iii) සෙ.මී. 90 ට වැඩි</label>
+            <p>පුරුෂ</p>
+            <input type='radio' id='rd-waist-1' name='rd-waist' value='0' required>
+            <label for='rd-waist-1'>(i) සෙ.මී. 90 ට අඩු</label>
+            <input type='radio' id='rd-waist-2' name='rd-waist' value='4' required>
+            <label for='rd-waist-2'>(ii) සෙ.මී. 90 - 100 </label>
+            <input type='radio' id='rd-waist-3' name='rd-waist' value='7' required>
+            <label for='rd-waist-3'>(iii) සෙ.මී.100 ට වැඩි</label>
+          </span>
+        </fieldset>
+                 <!-- <a href="#page11" data-role="button" onclick="return GetValue('rd-waist')">ඊළග ප්‍රශ්නය >></a> -->
+        <a href="#page9" data-role="button"><< ආපසු </a>
+        <button type="submit" class="btn btn-primary" id="totalScore" onclick="return GetTotal('rd-waist')">Submit</button>
+      </div>
+    </div>
 
+    <div data-role = "page" id = "page12">
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="" >Low Risk Level</font></h1>
+      </div>
 
-      <div data-role = "page" id = "page12">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="" >Low Risk Level</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <div id="total"></div>
-      <div>As you have low risklevel, you have to refer following health tips...</div>
-      <video controls="controls">
-            <source src="media/diabetes.mp4" type="video/mp4">
-      </video> 
-       </div>
-      
-       <div id="fullpage" class = "ui-content">
+      <div role = "main" class = "ui-content">
+        <div id="total"></div>
+        <div>As you have low risklevel, you have to refer following health tips...</div>
+        <video controls="controls">
+          <source src="media/diabetes.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div id="fullpage" class = "ui-content">
         You can follow our twitter page for recieving health tips via your mobile phon
-
-      <input type="hidden" size=16 id="sendto2" value="40404" /><br/>
-      <input type="hidden" id="textmsg1" value="Follow DiabetesLow"><br/>
-      <button onclick="sendSMS2();">Follow</button>
-      Visit our website for more details...
-      <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/low-risk-group" data-role="button">Visit Website >></a> -->
-      <input type="button" onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups';" value="Visit Website >>" />
+        <input type="hidden" size=16 id="sendto2" value="40404" /><br/>
+        <input type="hidden" id="textmsg1" value="Follow DiabetesLow"><br/>
+        <button onclick="sendSMS2();">Follow</button>
+        Visit our website for more details...
+        <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/low-risk-group" data-role="button">Visit Website >></a> -->
+        <input type="button" onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups';" value="Visit Website >>" />
             <!--<hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
-            <hr/> 
-            
+            <hr/>
+
       <button onclick="startWatch();">Start Watch</button>
             <button onclick="stopWatch();">Stop Watch</button>
             <br/><div id='watching'></div>
             <hr/>
-                
+
             <span id='intercept'/>Intercept OFF</span><br/>
-      <button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
+      <button id='enable_intercept' onclick='toggleIntercept();'>Enable</button>
             <button onclick="restoreAllSMS();">Restore SMS</button>
             <button onclick="deleteLastSMS();">Delete Last SMS</button>
             <hr/>
       -->
             <!-- <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/> -->
-            
-            <div id='status'></div><!-- <hr/> -->
-            <div id='data' style='text-align:left;'></div>
-       </div>
-       
+
+        <div id='status'></div><!-- <hr/> -->
+        <div id='data' style='text-align:left;'></div>
+      </div>
     </div>
-  
-      <div data-role = "page" id = "page13">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="" >Intermediate Risk Level</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <div id="total2"></div>
-      <div>As you have intermediate risklevel, you have to refer following health tips...</div>
-      <video controls="controls">
-            <source src="media/diabetes.mp4" type="video/mp4">
-      </video> 
-       </div>
-      
-       <div id="fullpage" class = "ui-content">
+
+    <div data-role = "page" id = "page13">
+      <div data-role = "header" style="background-color:#333;">
+
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="" >Intermediate Risk Level</font></h1>
+      </div>
+
+      <div role = "main" class = "ui-content">
+        <div id="total2"></div>
+        <div>As you have intermediate risklevel, you have to refer following health tips...</div>
+        <video controls="controls">
+          <source src="media/diabetes.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div id="fullpage" class = "ui-content">
         You can follow our twitter page for recieving health tips via your mobile phone.
 
-      <input type="hidden" size=16 id="sendto2" value="40404" /><br/>
-      <input type="hidden" id="textmsg2" value="Follow DiabetesLow"><br/>
-      <button onclick="sendSMS2();">Follow</button>
-      Visit our website for more details...
-      <!-- <button onclick="sendSMS2();">Follow</button> -->
-     <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/intermediate-risk-group" data-role="button">Visit Website >></a> -->
-      <input type="button" onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups';" value="Visit Website >>" />
-            <!--<hr/>
-            <button onclick="listSMS();">List Inbox (recent 10)</button>
-            <hr/> 
-            
-      <button onclick="startWatch();">Start Watch</button>
-            <button onclick="stopWatch();">Stop Watch</button>
-            <br/><div id='watching'></div>
-            <hr/>
-                
-            <span id='intercept'/>Intercept OFF</span><br/>
-      <button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
-            <button onclick="restoreAllSMS();">Restore SMS</button>
-            <button onclick="deleteLastSMS();">Delete Last SMS</button>
-            <hr/>
-      -->
-            <!-- <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
-             -->
-            <div id='status'></div><!-- <hr/> -->
-            <div id='data' style='text-align:left;'></div>
-       </div>
-       
+        <input type="hidden" size=16 id="sendto2" value="40404" /><br/>
+        <input type="hidden" id="textmsg2" value="Follow DiabetesLow"><br/>
+        <button onclick="sendSMS2();">Follow</button>
+        Visit our website for more details...
+        <!-- <button onclick="sendSMS2();">Follow</button> -->
+        <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/intermediate-risk-group" data-role="button">Visit Website >></a> -->
+        <input type="button" onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups';" value="Visit Website >>" />
+        <!--<hr/>
+        <button onclick="listSMS();">List Inbox (recent 10)</button>
+        <hr/>
+
+        <button onclick="startWatch();">Start Watch</button>
+        <button onclick="stopWatch();">Stop Watch</button>
+        <br/><div id='watching'></div>
+        <hr/>
+
+        <span id='intercept'/>Intercept OFF</span><br/>
+        <button id='enable_intercept' onclick='toggleIntercept();'>Enable</button>
+        <button onclick="restoreAllSMS();">Restore SMS</button>
+        <button onclick="deleteLastSMS();">Delete Last SMS</button>
+        <hr/>
+        -->
+        <!-- <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
+         -->
+        <div id='status'></div><!-- <hr/> -->
+        <div id='data' style='text-align:left;'></div>
+      </div>
+
     </div>
-  
-<div data-role = "page" id = "page14">
-       <div data-role = "header" style="background-color:#333;">
-       
-      <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
-          <h1><font face="" >High Risk Level</font></h1>
-       </div>
-       
-       <div role = "main" class = "ui-content">
-          <div id="total3"></div>
-      <div>As you have high risklevel, you have to refer following health tips...</div>
-       <video controls="controls">
-            <source src="media/diabetes.mp4" type="video/mp4">
-       </video> 
-       </div>
-      
-       <div id="fullpage" class = "ui-content">
+
+    <div data-role = "page" id = "page14">
+      <div data-role = "header" style="background-color:#333;">
+        <a href="index.html" data-role="button" data-theme="a" style="background-color:#333; color:#fff;">Home</a>
+        <h1><font face="" >High Risk Level</font></h1>
+      </div>
+
+      <div role = "main" class = "ui-content">
+        <div id="total3"></div>
+        <div>As you have high risklevel, you have to refer following health tips...</div>
+        <video controls="controls">
+          <source src="media/diabetes.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div id="fullpage" class = "ui-content">
         You can follow our twitter page for recieving health tips via your mobile phone.
 
-      <input type="hidden" size=16 id="sendto2" value="40404" /><br/>
-      <input type="hidden" id="textmsg3" value="Follow DiabetesLow"><br/>
-      <button onclick="sendSMS2();">Follow</button>
-      Visit our website for more details...
-      <!-- <button onclick="sendSMS2();">Follow</button> -->
-      <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group" data-role="button">Visit Website >></a> -->
-      <!--<input type="button" onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group'; value="Visit Website >" -->
-       <button onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group'" type="button">
-         Visit website</button>   
-          <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group">vISIT WEBSITE</a> -->
-           <!--<hr/>
-            <button onclick="listSMS();">List Inbox (recent 10)</button>
-            <hr/> 
-            
-      <button onclick="startWatch();">Start Watch</button>
-            <button onclick="stopWatch();">Stop Watch</button>
-            <br/><div id='watching'></div>
-            <hr/>
-                
-            <span id='intercept'/>Intercept OFF</span><br/>
-      <button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
-            <button onclick="restoreAllSMS();">Restore SMS</button>
-            <button onclick="deleteLastSMS();">Delete Last SMS</button>
-            <hr/>
-      -->
-            <!-- <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/> -->
-            
-            <div id='status'></div><!-- <hr/> -->
-            <div id='data' style='text-align:left;'></div>
-       </div>
-       
-    </div>
-  
-     
-    </div>
-  
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
-  <script type="text/javascript" src="cordova.js"></script> 
-  <script>
-    var total=0;
-  var risk;
-    function GetValue(classname)
-    {
-      var radios =document.getElementsByName(classname);
-      for (var i = 0, length = radios.length; i < length; i++)
-      {
-       if (radios[i].checked)
-       {
-        // do whatever you want with the checked radio
-         // alert(radios[i].value);
-        total += Number(radios[i].value);
+        <input type="hidden" size=16 id="sendto2" value="40404" /><br/>
+        <input type="hidden" id="textmsg3" value="Follow DiabetesLow"><br/>
+        <button onclick="sendSMS2();">Follow</button>
+        Visit our website for more details...
+        <!-- <button onclick="sendSMS2();">Follow</button> -->
+        <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group" data-role="button">Visit Website >></a> -->
+        <!--<input type="button" onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group'; value="Visit Website >" -->
+        <button onclick="location.href='https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group'" type="button">
+          Visit website
+        </button>
+        <!-- <a href="https://helpdiabetes2.000webhostapp.com/risk-groups/high-risk-group">vISIT WEBSITE</a> -->
+        <!--<hr/>
+        <button onclick="listSMS();">List Inbox (recent 10)</button>
+        <hr/>
 
-        // only one radio can be logically checked, don't check the rest
-        break;
-       }
+        <button onclick="startWatch();">Start Watch</button>
+        <button onclick="stopWatch();">Stop Watch</button>
+        <br/><div id='watching'></div>
+        <hr/>
+
+        <span id='intercept'/>Intercept OFF</span><br/>
+        <button id='enable_intercept' onclick='toggleIntercept();'>Enable</button>
+        <button onclick="restoreAllSMS();">Restore SMS</button>
+        <button onclick="deleteLastSMS();">Delete Last SMS</button>
+        <hr/>
+        -->
+        <!-- <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/> -->
+
+        <div id='status'></div><!-- <hr/> -->
+        <div id='data' style='text-align:left;'></div>
+      </div>
+
+    </div>
+
+  </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script>
+      var total=0;
+      var risk;
+
+      var user_gender = 0;
+
+      function GetValue(classname) {
+        var radios =document.getElementsByName(classname);
+        for (var i = 0, length = radios.length; i < length; i++)
+        {
+         if (radios[i].checked)
+         {
+
+          total += Number(radios[i].value);
+          break;
+         }
+        }
+        
+        update_user_gender();
       }
-    }
 
-    function GetTotal(classname)
-    {
-      GetValue(classname);
-     if(total <= 5){
+      function GetTotal(classname){
+        GetValue(classname);
+        if(total <= 5){
+          document.getElementById("total1").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is Low</p>";
+          this.document.location.href = "#page12";
+        }
+        else if(total <= 11){
+          document.getElementById("total2").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is intermediate </p>";
+          this.document.location.href = "#page13";
+        }
+        else{
+          document.getElementById("total3").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is High</p>";
+          this.document.location.href = "#page14";
+        }
+
+      }
+
+
+
       
-      document.getElementById("total1").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is Low</p>";
-    this.document.location.href = "#page12";
-    }
-    else if(total <= 11){
-    
-    document.getElementById("total2").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is intermediate </p>";
-    //alert(total);
-    this.document.location.href = "#page13";
-    }
-    else{
-    document.getElementById("total3").innerHTML = "<p>Your total score is "+total+" </br> Your Risk Level is High</p>";
-    this.document.location.href = "#page14";
-    }
-    
-      //this.document.location.href = "#page5";
-      // alert(total);
-    }
 
-    // $(document).ready(function() {
-    //  $("#totalScore").click(function(e) {
-    //    e.preventDefault();
-    //    var q1 = $("#rd-age :radio:checked").val();
-    //    var gender = $("#rd-gender :radio:checked").val();
-    //    var q3 = $("#rd-relation :radio:checked").val();
-    //    var q4 = $("#rd-team :radio:checked").val();
-    //    if (q1 == '' || gender == '' || q3 == '' || q4 == '') {
-    //      alert("Please Fill Required Fields");
-    //    }
-    //    else {
-    //      alert(q1+" - "+gender+" - "+q3+" - "+q4 );
-    //    }
-    //  });
-    // });
+      function show_cig_content(payload) {
+        let content = "<h4>a) ඔබ කොපමණ කාලයක සිට දුම්වැටි පානය සිදු කරයිද?</h4><input type='checkbox' name='duration1' value='0'> අවුරුදු එකකට පෙර සිට<br><input type='checkbox' name='duration2' value='0'> අවුරුදු 1-3 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration3' value='0'> අවුරුදු 3-5 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration4' value='0'> අවුරුදු 5-10 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration5' value='0'> අවුරුදු 10 ට වැඩි<br><h4>b) ඔබ කොපමණ කාලයක සිට මත්පැන් පානය සිදු කරයිද?</h4><input type='checkbox' name='duration6' value='0'> අවුරුදු එකකට පෙර සිට<br><input type='checkbox' name='duration7' value='0'> අවුරුදු 1-3 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration8' value='0'> අවුරුදු 3-5 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration9' value='0'> අවුරුදු 5-10 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration1' value='0'> අවුරුදු 10 ට වැඩි<br>";
+
+        if (payload == 1){
+          $('#cig_related_content').html(content);
+        }else {
+            $('#cig_related_content').html("");
+        }
+
+
+      }
+
+      function update_user_gender() {
+        user_gender = $('input[name=rd-gender]:checked').val();
+        update_content();
+      }
+
+      function update_content() {
+        let f_content = "<p>ස්ත්‍රී</p><input type='radio' id='rd-waist-4' name='rd-waist' value='0' required><label for='rd-waist-4'>(i) සෙ.මී. 80 ට අඩු </label><input type='radio' id='rd-waist-5' name='rd-waist' value='4' required><label for='rd-waist-5'>(ii) සෙ.මී. 80 - 90 </label><input type='radio' id='rd-waist-6' name='rd-waist' value='7' required><label for='rd-waist-6'>(iii) සෙ.මී. 90 ට වැඩි</label>";
+
+        let m_content = "<p>පුරුෂ</p><input type='radio' id='rd-waist-1' name='rd-waist' value='0' required><label for='rd-waist-1'>(i) සෙ.මී. 90 ට අඩු</label><input type='radio' id='rd-waist-2' name='rd-waist' value='4' required><label for='rd-waist-2'>(ii) සෙ.මී. 90 - 100 </label><input type='radio' id='rd-waist-3' name='rd-waist' value='7' required><label for='rd-waist-3'>(iii) සෙ.මී.100 ට වැඩි</label>";
+
+        if (user_gender == 0){
+          $('#gender_related_content').html(f_content);
+        }
+
+        if (user_gender == 3) {
+          $('#gender_related_content').html(m_content);
+        }
+
+      }
+
 
   </script>
   </body>
 </html>
-    
-
