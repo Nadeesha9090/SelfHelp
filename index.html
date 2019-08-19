@@ -273,11 +273,14 @@
 
       <div role = "main" class = "ui-content">
         <fieldset data-role="controlgroup" id="rd-glucose">
-          <legend>Q5 -  ඔබ යම් අවස්ථාවක ඔබට අධි රුධිර ග්ලුකෝස් (සීනි ) ඇති බව සොයාගන තිබේද? (උදා : සෞඛ්‍යය පරීක්ෂනයකදී, අසනීප අවස්ථාවකදී හෝ ගර්භණී සමයේදී )</legend>
-          <input type="radio" id="rd-glucose-1" name="rd-glucose" value="6" required>
+          <legend>Q5 -  ඔබ යම් අවස්ථාවක ඔබට අධි රුධිර ග්ලුකෝස් (සීනි ) ඇති බව සොයාගන තිබේද? </legend>
+          <input type="radio" name="glucoseStatus" id="rd-glucose-1"  value="c" onclick="show_hbp_content(6)">
           <label for="rd-glucose-1">(i) ඔව්</label>
+			<span id = "hbp_related_content">
 
-          <input type="radio" id="rd-glucose-2" name="rd-glucose" value="0" required>
+          </span>
+			
+          <input type="radio" name="glucoseStatus" id="rd-glucose-2"  value="d" onclick="show_hbp_content(0)">
           <label for="rd-glucose-2">(ii) නැත </label>
         </fieldset>
         <a href="#page6" data-role="button" onclick="return GetValue('rd-glucose')">ඊළග ප්‍රශ්නය >></a>
@@ -563,7 +566,7 @@
           break;
          }
         }
-        
+       
         update_user_gender();
       }
 
@@ -585,8 +588,6 @@
       }
 
 
-
-      
 
       function show_cig_content(payload) {
         let content = "<h4>a) ඔබ කොපමණ කාලයක සිට දුම්වැටි පානය සිදු කරයිද?</h4><input type='checkbox' name='duration1' value='0'> අවුරුදු එකකට පෙර සිට<br><input type='checkbox' name='duration2' value='0'> අවුරුදු 1-3 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration3' value='0'> අවුරුදු 3-5 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration4' value='0'> අවුරුදු 5-10 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration5' value='0'> අවුරුදු 10 ට වැඩි<br><h4>b) ඔබ කොපමණ කාලයක සිට මත්පැන් පානය සිදු කරයිද?</h4><input type='checkbox' name='duration6' value='0'> අවුරුදු එකකට පෙර සිට<br><input type='checkbox' name='duration7' value='0'> අවුරුදු 1-3 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration8' value='0'> අවුරුදු 3-5 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration9' value='0'> අවුරුදු 5-10 අතර කාලයකට පෙර සිට<br><input type='checkbox' name='duration1' value='0'> අවුරුදු 10 ට වැඩි<br>";
@@ -620,7 +621,19 @@
 
       }
 
+	   
+	    function show_hbp_content(payload1) {
+        let content = "<h4>a) ඔබට අධි රුධිර ග්ලුකෝස් (සීනි) ඇති බව සොයාගනු ලැබුවේ පහත කිනම් අවස්ථාවකදීද?</h4><input type='checkbox' name='reason1' value='0'> සෞඛ්‍යය පරීක්ෂණයකදී<br><input type='checkbox' name='reason2' value='0'> අසනීපවූ අවස්ථාවකදී<br><input type='checkbox' name='reason3' value='0'> ගර්භණී සමයේදී<br>";
 
+        if (payload1 == 6){
+          $('#hbp_related_content').html(content);
+        }else {
+            $('#hbp_related_content').html("");
+        }
+		//alert(payload1);
+
+      }
+	  
   </script>
   </body>
 </html>
